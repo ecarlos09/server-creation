@@ -10,10 +10,13 @@ const requestListener = (request, response) => {
   let statusCode;
   response.setHeader('Access-Control-Allow-Origin', '*'); // NEW LINE
   response.writeHead(200);
-  response.end('Welcome to our animal site!  Add an animal of your choice to the url name to return information about some of our favourite animals!');
+  response.end();
   
   //Deal with our different endpoints!
   switch(request.url) {
+    case '/':
+      body = 'Welcome to our animal site!  Click a button below name to return information about some of our favourite animals!';
+      break;
     case `/cats`:
       if(request.method === "GET") {
         body = { cats: AllCats }
