@@ -10,7 +10,6 @@ const requestListener = (request, response) => {
   let statusCode;
   response.setHeader('Access-Control-Allow-Origin', '*'); // NEW LINE
   response.writeHead(200);
-  response.end();
   
   //Deal with our different endpoints!
   switch(request.url) {
