@@ -8,11 +8,14 @@ let allUnicorns = [{id: 'Rainbow Dash', color: 'multi'}, {id: 'Pegasus', color: 
 const requestListener = (request, response) => {
   let body;
   let statusCode;
-  // response.statusCode = 200;
-  // response.end('Hello, client!');
+  response.setHeader('Access-Control-Allow-Origin', '*'); // NEW LINE
+  response.writeHead(200);
   
   //Deal with our different endpoints!
   switch(request.url) {
+    case '/':
+      body = 'Welcome to our animal site!  Click a button below name to return information about some of our favourite animals!';
+      break;
     case `/cats`:
       if(request.method === "GET") {
         body = { cats: AllCats }
@@ -27,7 +30,7 @@ const requestListener = (request, response) => {
       }; break;
     default:
       statusCode = 404;
-      body = { error: `Route ${req.url} does not exist`}
+      body = { error: `Route ${request.url} does not exist`}
       break;
 
     //Define final behaviour of requestListener function
